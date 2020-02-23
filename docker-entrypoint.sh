@@ -3,6 +3,7 @@ set -euo pipefail
 
 apache_tomcat_initilizing() {
       if [[ ! -d "/opt/tomcat/webapps/app1" ]]; then
+
                git config --global user.name "mydemorepo"
                git config --global user.email adamvasyliuta@gmail.com
                cd /opt/tomcat/webapps
