@@ -12,6 +12,7 @@ apache_tomcat_initilizing() {
                git remote add app1 https://github.com/mydemorepo/app1.git
                sh /opt/tomcat/bin/startup.sh
       else
+               cd /opt/tomcat/webapps/app1
                git pull app1 master
                sh /opt/tomcat/bin/startup.sh
       fi
