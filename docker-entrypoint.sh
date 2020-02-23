@@ -35,6 +35,7 @@ if [[ "$1" == /bin/bash ]]; then
         mysql_initilizing
         echo ""
         echo "***MySQL SERVER STARTED SUCCESSFULY ***"
+        echo ""
 fi
 
 
