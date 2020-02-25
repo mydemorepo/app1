@@ -10,14 +10,14 @@ apache_tomcat_initilizing() {
                git clone https://github.com/mydemorepo/app1.git
                cd app1
                git remote add app1 https://github.com/mydemorepo/app1.git
-               chown -R mysql:mysql /usr/lib/jvm 
+               chown -R mysql:mysql /usr/lib/jvm
                chown -R mysql:mysql /opt/tomcat
-               sh /opt/tomcat/bin/startup.sh
+               gosu mysql sh /opt/tomcat/bin/startup.sh
       else
                cd /opt/tomcat/webapps/app1
                git pull app1 master
                chown -R mysql:mysql /opt/tomcat/webapps/app1
-               sh /opt/tomcat/bin/startup.sh
+               gosu mysql sh /opt/tomcat/bin/startup.sh
       fi
 }
 
@@ -41,4 +41,4 @@ if [[ "$1" == /bin/bash ]]; then
 fi
 
 
-exec "$@"
+exec gosu mysql "$@"

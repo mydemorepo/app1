@@ -1,5 +1,5 @@
 #This is a base Image for app1
-FROM ubuntu
+FROM ubuntu:18.04
 MAINTAINER adamvasyliuta@gmail.com
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -13,12 +13,13 @@ RUN   apt-get update \
       curl \ 
       nano \
       git \
+      gosu \
       openjdk-11-jdk \
    && { \
       echo "mysql-server-5.7 mysql-server/root_password password root" ; \
       echo "mysql-server-5.7 mysql-server/root_password_again password root" ; \
       } | debconf-set-selections \
-   && apt-get install mysql-server -y \
+   && apt-get install mysql-server-5.7 -y \
    && cd /tmp \
    && curl -O http://apache.ip-connect.vn.ua/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz \
    && mkdir /opt/tomcat \
