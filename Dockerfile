@@ -25,8 +25,6 @@ RUN   apt-get update \
    && tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1 \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-   && groupadd -r app1_grp \
-   && useradd -r -g app1_grp -d /home/app1_user -p Docker! -s /bin/bash  app1_user \
    && echo "root:root" | chpasswd
 
 EXPOSE 8080
