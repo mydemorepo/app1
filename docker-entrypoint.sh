@@ -35,9 +35,17 @@ mysql_initilizing() {
       fi
 }
 
+apache_ant_initilizing() {
+      if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
+               chown -R mysql:mysql /opt/ant
+      fi
+}
+
+
 if [[ "$1" == /bin/bash ]]; then
          apache_tomcat_initilizing
          mysql_initilizing
+         apache_ant_initilizing
 fi
 
 
