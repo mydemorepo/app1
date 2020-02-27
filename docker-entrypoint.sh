@@ -12,15 +12,11 @@ apache_tomcat_initilizing() {
                git remote add app1 https://github.com/mydemorepo/app1.git
                chown -R mysql:mysql /usr/lib/jvm
                chown -R mysql:mysql /opt/tomcat
-               sed '/</tomcat-users>/i <user username="user1" password="pass1" \
-                   roles="manager-script,manager-gui"/>' /opt/tomcat/conf/tomcat-users.xml
-               sed '/<user username="user1" password="pass1" roles="manager-script,manager-gui"/>/i \
-                   <role rolename="manager-gui"/>' /opt/tomcat/conf/tomcat-users.xml
+               sed '/</tomcat-users>/i <user username="user1" password="pass1" roles="manager-script,manager-gui"/>' /opt/tomcat/conf/tomcat-users.xml
+               sed '/<user username="user1" password="pass1" roles="manager-script,manager-gui"/>/i <role rolename="manager-gui"/>' /opt/tomcat/conf/tomcat-users.xml
                sed '/<role rolename="manager-gui"/>/i <role rolename="manager-script"/>' /opt/tomcat/conf/tomcat-users.xml
-               sed '/<Context antiResourceLocking="false" privileged="true" >/a <!--' \
-                   /opt/tomcat/webapps/manager/META-INF/context.xml
-               sed '/allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />/a -->' \
-                   /opt/tomcat/webapps/manager/META-INF/context.xml
+               sed '/<Context antiResourceLocking="false" privileged="true" >/a <!--' /opt/tomcat/webapps/manager/META-INF/context.xml
+               sed '/allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />/a -->' /opt/tomcat/webapps/manager/META-INF/context.xml
                cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
                gosu mysql sh /opt/tomcat/bin/startup.sh
       else
