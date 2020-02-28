@@ -30,7 +30,7 @@ mysql_initilizing() {
       #Change the authentication method for root
          mysql -u root -proot -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES;"
       #Database creation
-         mysql -uroot -proot < /opt/tomcat/webapps/app1/sampledatabase.sql;
+         mysql -uroot -proot < /opt/tomcat/webapps/app1/config/sampledatabase.sql;
    else
       #MySQL service start
          service mysql start
