@@ -10,8 +10,8 @@ apache_tomcat_initilizing() {
          cd app1
          git remote add app1 https://github.com/mydemorepo/app1.git
          cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
-         cp -f /opt/tomcat/webapps/app1/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
-         cp -f /opt/tomcat/webapps/app1/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
+         cp -f /opt/tomcat/webapps/app1/config/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
+         cp -f /opt/tomcat/webapps/app1/config/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
          chown -R mysql:mysql /usr/lib/jvm
          chown -R mysql:mysql /opt/tomcat
          gosu mysql sh /opt/tomcat/bin/startup.sh
