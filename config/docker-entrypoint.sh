@@ -16,10 +16,10 @@ apache_tomcat_initilizing() {
          chown -R mysql:mysql /opt/tomcat
          gosu mysql sh /opt/tomcat/bin/startup.sh
    else
-      cd /opt/tomcat/webapps/app1
-      git pull app1 master
-      chown -R mysql:mysql /opt/tomcat/webapps/app1
-      gosu mysql sh /opt/tomcat/bin/startup.sh
+         cd /opt/tomcat/webapps/app1
+         git pull app1 master
+         chown -R mysql:mysql /opt/tomcat/webapps/app1
+         gosu mysql sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -45,10 +45,10 @@ apache_ant_initilizing() {
 
 
 if [[ "$1" == /bin/bash ]]; then
-      apache_tomcat_initilizing
-      mysql_initilizing
-      apache_ant_initilizing
+         apache_tomcat_initilizing
+         mysql_initilizing
+         apache_ant_initilizing
 fi
 
 
-      exec gosu mysql "$@"
+         exec gosu mysql "$@"
