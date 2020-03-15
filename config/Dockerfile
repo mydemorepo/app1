@@ -16,6 +16,7 @@ RUN   apt-get update \
       nano \
       git \
       gosu \
+      apache2 \
       openjdk-11-jdk \
    && { \
       echo "mysql-server-5.7 mysql-server/root_password password root" ; \
@@ -32,7 +33,7 @@ RUN   apt-get update \
    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
    && echo "root:root" | chpasswd
 
-EXPOSE 8080
+EXPOSE 8080 80 443
 
 COPY docker-entrypoint.sh /usr/local/bin
 

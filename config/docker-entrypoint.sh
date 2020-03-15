@@ -43,12 +43,22 @@ apache_ant_initilizing() {
    fi
 }
 
+apache_http_initilizing() {
+   if [[ -O "/var/www/html" && -G "/var/www/html" ]]; then
+         chown -R mysql:mysql /var/www/html /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2
+         sed -i 's/www-data/mysql/g' /etc/apache2/envvars
+         service apache2 start
+   else
+         service apache2 start
+   fi
+}
+
+
 
 if [[ "$1" == /bin/bash ]]; then
          apache_tomcat_initilizing
          mysql_initilizing
          apache_ant_initilizing
+         apache_http_initilizing
 fi
-
-
          exec gosu mysql "$@"
