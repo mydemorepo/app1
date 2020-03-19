@@ -49,10 +49,9 @@ apache_http_initilizing() {
          chown -R mysql:mysql /var/www/html /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2
          sed -i 's/www-data/mysql/g' /etc/apache2/envvars
          cp config/apache2config/000-default.conf /etc/apache2/sites-available 
-         service apache2 start
          a2enconf proxy
          a2enconf proxy_http
-         service apache2 restart
+         service apache2 start
    else
          service apache2 start
    fi
