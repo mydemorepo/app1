@@ -48,10 +48,11 @@ apache_http_initilizing() {
          cp /opt/tomcat/webapps/app1/config/apache2config/mod_jk.so /usr/lib/apache2/modules/mod_jk.so
          chown -R mysql:mysql /var/www/html /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2
          sed -i 's/www-data/mysql/g' /etc/apache2/envvars
-         cp config/apache2config/000-default.conf /etc/apache2/sites-available
+         cp config/apache2config/000-default.conf /etc/apache2/sites-available 
+         service apache2 start
          a2enconf proxy
          a2enconf proxy_http
-         service apache2 start
+         service apache2 restart
    else
          service apache2 start
    fi
