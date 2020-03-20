@@ -45,11 +45,11 @@ apache_ant_initilizing() {
 
 apache_http_initilizing() {
    if [[ -O "/var/www/html" && -G "/var/www/html" ]]; then
-         cp /opt/tomcat/webapps/app1/config/apache2config/000-default.conf /etc/apache2/sites-available/000-default.conf
+#         cp /opt/tomcat/webapps/app1/config/apache2config/000-default.conf /etc/apache2/sites-available/000-default.conf
          chown -R mysql:mysql /var/www/html /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2
          sed -i 's/www-data/mysql/g' /etc/apache2/envvars 
-         a2enconf proxy
-         a2enconf proxy_http
+ #        a2enconf proxy
+  #       a2enconf proxy_http
          service apache2 start
    else
          service apache2 start
