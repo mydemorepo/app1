@@ -9,7 +9,6 @@ apache_tomcat_initilizing() {
          git clone https://github.com/mydemorepo/app1.git
          cd app1
          git remote add app1 https://github.com/mydemorepo/app1.git
-         cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
          chown -R mysql:mysql /usr/lib/jvm
@@ -39,6 +38,7 @@ mysql_initilizing() {
 
 apache_ant_initilizing() {
    if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
+         cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
          chown -R mysql:mysql /opt/ant
    fi
 }
