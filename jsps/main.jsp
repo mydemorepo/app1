@@ -7,12 +7,12 @@
       <link rel="stylesheet" type="text/css" href="/app1/styles/main.css"/>
    </head>
    <body>
-      <div id="Wrapper">
+      <div id="header">Header</div>
+      <div id="middle">
          <div id="leftSidebar">leftSidebar</div>
-         <div id="rightSidebar">RightSidebar</div>
-         <div id="header">Header</div>
          <div id="main">Main</div>
-    </div>
+         <div id="rightSidebar">RightSidebar</div>
+      </div>         
       <div id="footer">Footer</div>
    </body>
 </html>
