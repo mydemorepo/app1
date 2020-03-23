@@ -8,11 +8,9 @@
    </head>
    <body>
       <div id="header">Header</div>
-      <div id="middle">
          <div id="leftSidebar">leftSidebar</div>
          <div id="main">Main</div>
-         <div id="rightSidebar">RightSidebar</div>
-      </div>         
+         <div id="rightSidebar">RightSidebar</div>        
       <div id="footer">Footer</div>
    </body>
 </html>
