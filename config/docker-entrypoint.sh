@@ -11,14 +11,14 @@ apache_tomcat_initilizing() {
          git remote add app1 https://github.com/mydemorepo/app1.git
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-         chown -R mysql:mysql /usr/lib/jvm
-         chown -R mysql:mysql /opt/tomcat
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+         chown -R www-data:www-data /usr/lib/jvm
+         chown -R www-data:www-data /opt/tomcat
+         gosu  www-data sh /opt/tomcat/bin/startup.sh
    else
          cd /opt/tomcat/webapps/app1
          git pull app1 master
-         chown -R mysql:mysql /opt/tomcat/webapps/app1
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+         chown -R www-data:www-data /opt/tomcat/webapps/app1
+         gosu www-data sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -39,15 +39,14 @@ mysql_initilizing() {
 apache_ant_initilizing() {
    if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
          cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
-         chown -R mysql:mysql /opt/ant
+         chown -R www-data:www-data /opt/ant
    fi
 }
 
 apache_http_initilizing() {
    if [[ -O "/var/www/html" && -G "/var/www/html" ]]; then
          cp /opt/tomcat/webapps/app1/config/apache2config/000-default.conf /etc/apache2/sites-available/000-default.conf
-         chown -R mysql:mysql /var/www/html /usr/sbin/apache2 /usr/lib/apache2 /etc/apache2 /usr/share/apache2
-         sed -i 's/www-data/mysql/g' /etc/apache2/envvars 
+         chown -R www-data:www-data /var/www/html
          a2enmod proxy
          a2enmod proxy_http
          service apache2 start

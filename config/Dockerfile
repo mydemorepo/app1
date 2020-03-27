@@ -33,7 +33,7 @@ RUN   apt-get update \
    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
    && echo "root:root" | chpasswd
 
-EXPOSE 80 443
+EXPOSE 80 443 8080
 
 COPY docker-entrypoint.sh /usr/local/bin
 
