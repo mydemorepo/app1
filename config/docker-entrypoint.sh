@@ -13,12 +13,12 @@ apache_tomcat_initilizing() {
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
          chown -R www-data:www-data /usr/lib/jvm
          chown -R www-data:www-data /opt/tomcat
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+         gosu  www-data sh /opt/tomcat/bin/startup.sh
    else
          cd /opt/tomcat/webapps/app1
          git pull app1 master
          chown -R www-data:www-data /opt/tomcat/webapps/app1
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+         gosu www-data sh /opt/tomcat/bin/startup.sh
    fi
 }
 
