@@ -13,14 +13,14 @@ apache_tomcat_initilizing() {
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context.xml /opt/tomcat/conf
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/mysql-connector-java-8.0.19.jar /opt/tomcat/lib 
-         chown -R www-data:www-data /usr/lib/jvm
-         chown -R www-data:www-data /opt/tomcat
+         chown -R mysql:mysql /usr/lib/jvm
+         chown -R mysql:mysql /opt/tomcat
          gosu  www-data sh /opt/tomcat/bin/startup.sh
    else
          cd /opt/tomcat/webapps/app1
          git pull app1 master
-         chown -R www-data:www-data /opt/tomcat/webapps/app1
-         gosu www-data sh /opt/tomcat/bin/startup.sh
+         chown -R mysql:mysql /opt/tomcat/webapps/app1
+         gosu mysql sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -42,7 +42,7 @@ mysql_initilizing() {
 apache_ant_initilizing() {
    if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
          cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib
-         chown -R www-data:www-data /opt/ant
+         chown -R mysql:mysql /opt/ant
    fi
 }
 
@@ -66,4 +66,4 @@ if [[ "$1" == /bin/bash ]]; then
          apache_ant_initilizing
          apache_http_initilizing
 fi
-         exec gosu mysql "$@"
+         exec "$@"
