@@ -15,7 +15,7 @@ apache_tomcat_initilizing() {
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/mysql-connector-java-8.0.19.jar /opt/tomcat/lib 
          chown -R mysql:mysql /usr/lib/jvm
          chown -R mysql:mysql /opt/tomcat
-         gosu  www-data sh /opt/tomcat/bin/startup.sh
+         gosu mysql sh /opt/tomcat/bin/startup.sh
    else
          cd /opt/tomcat/webapps/app1
          git pull app1 master
