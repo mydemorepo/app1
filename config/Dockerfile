@@ -9,7 +9,7 @@ ENV CATALINA_HOME=/opt/tomcat
 ENV CATALINA_BASE=/opt/tomcat
 ENV ANT_HOME=/opt/ant
 ENV PATH="${PATH}:/opt/ant/bin"
-ENV JAVA_OPTS="org.apache.catalina.session.StandardSession.ACTIVITY_CHECK=true"
+#ENV JAVA_OPTS="org.apache.catalina.session.StandardSession.ACTIVITY_CHECK=true"
 
 RUN   apt-get update \
    && apt-get install -y \
@@ -34,7 +34,7 @@ RUN   apt-get update \
    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
    && echo "root:root" | chpasswd
 
-EXPOSE 80 443 8080
+EXPOSE 80
 
 COPY docker-entrypoint.sh /usr/local/bin
 
