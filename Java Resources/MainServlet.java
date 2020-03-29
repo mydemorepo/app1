@@ -13,9 +13,11 @@ public class MainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		HttpSession session = request.getSession (true);
 
+		HttpSession session = request.getSession(true);
+		String testsession = "testsession";
+		session.setAttribute("TEST",testsession );
+		
 		ServletContext servletContext = getServletContext();
 		RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
 		requestDispatcher.forward(request, response);
