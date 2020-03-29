@@ -66,4 +66,4 @@ if [[ "$1" == /bin/bash ]]; then
          apache_ant_initilizing
          apache_http_initilizing
 fi
-         exec "$@"
+         exec gosu mysql "$@"
