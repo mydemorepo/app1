@@ -11,14 +11,14 @@ apache_tomcat_initilizing() {
          git remote add app1 https://github.com/mydemorepo/app1.git
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-         chown -R mysql:mysql /usr/lib/jvm
-         chown -R mysql:mysql /opt/tomcat
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+        # chown -R mysql:mysql /usr/lib/jvm
+        # chown -R mysql:mysql /opt/tomcat
+         sh /opt/tomcat/bin/startup.sh
    else
-         cd /opt/tomcat/webapps/app1
-         git pull app1 master
-         chown -R mysql:mysql /opt/tomcat/webapps/app1
-         gosu mysql sh /opt/tomcat/bin/startup.sh
+        # cd /opt/tomcat/webapps/app1
+        # git pull app1 master
+        # chown -R mysql:mysql /opt/tomcat/webapps/app1
+         sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -39,7 +39,7 @@ mysql_initilizing() {
 apache_ant_initilizing() {
    if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
          cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
-         chown -R mysql:mysql /opt/ant
+        # chown -R mysql:mysql /opt/ant
    fi
 }
 
@@ -63,4 +63,4 @@ if [[ "$1" == /bin/bash ]]; then
          apache_ant_initilizing
          apache_http_initilizing
 fi
-         exec gosu mysql "$@"
+         exec "$@"

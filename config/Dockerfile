@@ -9,7 +9,7 @@ ENV CATALINA_HOME=/opt/tomcat
 ENV CATALINA_BASE=/opt/tomcat
 ENV ANT_HOME=/opt/ant
 ENV PATH="${PATH}:/opt/ant/bin"
-#ENV JAVA_OPTS="org.apache.catalina.session.StandardSession.ACTIVITY_CHECK=true"
+ENV JAVA_OPTS=org.apache.catalina.session.StandardSession.ACTIVITY_CHECK=true
 
 RUN   apt-get update \
    && apt-get install -y \
