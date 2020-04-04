@@ -11,14 +11,13 @@ apache_tomcat_initilizing() {
          git remote add app1 https://github.com/mydemorepo/app1.git
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/tomcatusers.xml /opt/tomcat/conf/tomcat-users.xml
          cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context_.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-        # chown -R mysql:mysql /usr/lib/jvm
-        # chown -R mysql:mysql /opt/tomcat
-         sh /opt/tomcat/bin/startup.sh
+         cp -f /opt/tomcat/webapps/app1/config/tomcatconfig/context__.xml /opt/tomcat/conf/context.xml
+         mv /opt/tomcat/webapps/app1/config/tomcatconfig/mysql-connector-java-8.0.19.jar /opt/tomcat/lib 
+         chown -R mysql:mysql /usr/lib/jvm
+         chown -R mysql:mysql /opt/tomcat
+         gosu mysql sh /opt/tomcat/bin/startup.sh
    else
-        # cd /opt/tomcat/webapps/app1
-        # git pull app1 master
-        # chown -R mysql:mysql /opt/tomcat/webapps/app1
-         sh /opt/tomcat/bin/startup.sh
+         gosu mysql sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -28,8 +27,9 @@ mysql_initilizing() {
          service mysql start
       #Change the authentication method for root
          mysql -u root -proot -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'; FLUSH PRIVILEGES;"
-      #Database creation
+      #Databases creation
          mysql -uroot -proot < /opt/tomcat/webapps/app1/config/mysqlconfig/sampledatabase.sql;
+         mysql -uroot -proot < /opt/tomcat/webapps/app1/config/mysqlconfig/sessions.sql;
    else
       #MySQL service start
          service mysql start
@@ -39,7 +39,7 @@ mysql_initilizing() {
 apache_ant_initilizing() {
    if [[ -O "/opt/ant" && -G "/opt/ant" ]]; then
          cp /opt/tomcat/lib/catalina-ant.jar /opt/ant/lib/catalina-ant.jar
-        # chown -R mysql:mysql /opt/ant
+         chown -R mysql:mysql /opt/ant
    fi
 }
 
@@ -58,9 +58,9 @@ apache_http_initilizing() {
 
 
 if [[ "$1" == /bin/bash ]]; then
-         apache_tomcat_initilizing
          mysql_initilizing
-         apache_ant_initilizing
+         apache_tomcat_initilizing
          apache_http_initilizing
+         apache_ant_initilizing
 fi
-         exec "$@"
+         exec gosu mysql "$@"

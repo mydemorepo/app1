@@ -11,6 +11,8 @@ application_name varchar(255),
 session_data mediumblob
 );
 
-GRANT ALL PRIVILEGES ON tomcatsessions.* TO user1@localhost IDENTIFIED BY 'pass1';
+GRANT ALL PRIVILEGES ON tomcatsessions.* TO admin@localhost IDENTIFIED BY 'admin';
 
-GRANT FILE on *.* TO user1@localhost;
+GRANT FILE on *.* TO admin@localhost;
+
+FLUSH PRIVILEGES;

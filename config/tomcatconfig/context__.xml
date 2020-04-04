@@ -23,27 +23,25 @@
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
-
-    <Manager
+     <Manager
         className="org.apache.catalina.session.PersistentManager"
         saveOnRestart="true"
         maxActiveSessions="-1"
-        minIdleSwap="-1"
-        maxIdleBackup="-1">
+        minIdleSwap="0"
+        maxIdleSwap="0"
+        maxIdleBackup="1">
             <Store
                 className="org.apache.catalina.session.JDBCStore"
                 driverName="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost/tomcatsessions?user=user1; password=pass1"
+                connectionURL="jdbc:mysql://localhost/tomcatsessions?user=admin&amp;password=admin"
                 sessionTable="tomcat_session_data"
                 sessionIdCol="session_id"
-                sessionAppCol="application_id"
+                sessionAppCol="application_name"
                 sessionDataCol="session_data"
                 sessionValidCol="valid"
                 sessionMaxInactiveCol="maxinactive"
-                sessionLastAccessedCol="last_access"
-                checkInterval="60"/>
+                sessionLastAccessedCol="last_access"/>
     </Manager>
-
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />
