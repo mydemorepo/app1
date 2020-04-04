@@ -25,7 +25,7 @@ RUN   apt-get update \
       } | debconf-set-selections \
    && apt-get install mysql-server-5.7 -y \
    && cd /tmp \
-   && curl -O http://apache.ip-connect.vn.ua/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz \
+   && curl -O https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.31/bin/apache-tomcat-9.0.31.tar.gz \
    && curl -O http://apache.volia.net//ant/binaries/apache-ant-1.10.7-bin.tar.gz \
    && mkdir /opt/tomcat /opt/ant \
    && tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1 \
