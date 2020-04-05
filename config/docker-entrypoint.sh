@@ -60,8 +60,8 @@ apache_http_start() {
 }
 
 if [[ "$1" == /bin/bash ]]; then
-         mysql_initilizing
          apache_tomcat_initilizing
+         mysql_initilizing
          apache_http_initilizing
          apache_ant_initilizing
          mysql_start
