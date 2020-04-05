@@ -15,9 +15,6 @@ apache_tomcat_initilizing() {
          mv /opt/tomcat/webapps/app1/config/tomcatconfig/mysql-connector-java-8.0.19.jar /opt/tomcat/lib 
          chown -R mysql:mysql /usr/lib/jvm
          chown -R mysql:mysql /opt/tomcat
-         gosu mysql sh /opt/tomcat/bin/startup.sh
-   else
-         gosu mysql sh /opt/tomcat/bin/startup.sh
    fi
 }
 
@@ -30,9 +27,7 @@ mysql_initilizing() {
       #Databases creation
          mysql -uroot -proot < /opt/tomcat/webapps/app1/config/mysqlconfig/sampledatabase.sql;
          mysql -uroot -proot < /opt/tomcat/webapps/app1/config/mysqlconfig/sessions.sql;
-   else
-      #MySQL service start
-         service mysql start
+         service mysql stop
    fi
 }
 
@@ -49,18 +44,28 @@ apache_http_initilizing() {
          chown -R www-data:www-data /var/www/html
          a2enmod proxy
          a2enmod proxy_http
-         service apache2 start
-   else
-         service apache2 start
    fi
 }
 
+apache_tomcat_start() {
+         gosu mysql sh /opt/tomcat/bin/startup.sh
+}
 
+mysql_start() {
+         service mysql start
+}
+
+apache_http_start() {
+         service apache2 start
+}
 
 if [[ "$1" == /bin/bash ]]; then
          mysql_initilizing
          apache_tomcat_initilizing
          apache_http_initilizing
          apache_ant_initilizing
+         mysql_start
+         apache_tomcat_start
+         apache_http_start
 fi
          exec gosu mysql "$@"
